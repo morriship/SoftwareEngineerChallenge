@@ -1,11 +1,15 @@
 ![](https://gist.github.com/morriship/4fcd598cf98c4652f30b9bfa537a0e7e/raw/faad853144f766292fe5adc843889d042ec51c2b/design-sample.jpg)
 
-Accroading to the requirement, this solution should satisfy both availability and scalibility with high throughput. The explanation of the functionality of some components is listed below.
+Accroading to the requirement, this solution should satisfy both availability and scalability with high throughput. The explanation of the functionality of some components is listed below.
 
 
 ### Log Collecting Servers
 
 Receive log data from client's machines and send those to Kafka servers. Work on basic verification and filtering to prevent from bots or attacks. It should store all the logs into local storage if it can't connect to the Kafka servers.
+
+### Web & API Servers
+
+Serves for the querying of matrics from clients.
 
 ### Kafka
 
@@ -25,3 +29,12 @@ Use Airflow to manage all the batch process. Not only use spark and hadoop but a
 
 1. Batch processing.
     - Work on some batch processing logics such as batch aggregation and data join.
+
+
+### Cassandra
+
+Cassandra is used for storing the result of the batch processing on this design, but it's really depending on the use case.
+
+### HBase
+
+HBase is the storage of the OpenTSDB. It is better to arrage an isolated cluster of both storage and processing resource for HBase for good stability.
